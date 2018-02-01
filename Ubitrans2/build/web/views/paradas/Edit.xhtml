@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditParadasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditParadasLabel_idParada}" for="idParada" />
+                    <h:inputText id="idParada" value="#{paradasController.selected.idParada}" title="#{bundle.EditParadasTitle_idParada}" required="true" requiredMessage="#{bundle.EditParadasRequiredMessage_idParada}"/>
+                    <h:outputLabel value="#{bundle.EditParadasLabel_nombreParada}" for="nombreParada" />
+                    <h:inputText id="nombreParada" value="#{paradasController.selected.nombreParada}" title="#{bundle.EditParadasTitle_nombreParada}" required="true" requiredMessage="#{bundle.EditParadasRequiredMessage_nombreParada}"/>
+                    <h:outputLabel value="#{bundle.EditParadasLabel_distancia}" for="distancia" />
+                    <h:inputText id="distancia" value="#{paradasController.selected.distancia}" title="#{bundle.EditParadasTitle_distancia}" required="true" requiredMessage="#{bundle.EditParadasRequiredMessage_distancia}"/>
+                    <h:outputLabel value="#{bundle.EditParadasLabel_descripcionParada}" for="descripcionParada" />
+                    <h:inputText id="descripcionParada" value="#{paradasController.selected.descripcionParada}" title="#{bundle.EditParadasTitle_descripcionParada}" />
+                </h:panelGrid>
+                <h:commandLink action="#{paradasController.update}" value="#{bundle.EditParadasSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditParadasViewLink}"/>
+                <br />
+                <h:commandLink action="#{paradasController.prepareList}" value="#{bundle.EditParadasShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/views/Paradas/Listar" value="#{bundle.EditParadasIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

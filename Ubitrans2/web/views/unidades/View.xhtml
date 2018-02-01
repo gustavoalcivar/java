@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewUnidadesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewUnidadesLabel_idUnidad}"/>
+                    <h:outputText value="#{unidadesController.selected.idUnidad}" title="#{bundle.ViewUnidadesTitle_idUnidad}"/>
+                    <h:outputText value="#{bundle.ViewUnidadesLabel_placa}"/>
+                    <h:outputText value="#{unidadesController.selected.placa}" title="#{bundle.ViewUnidadesTitle_placa}"/>
+                    <h:outputText value="#{bundle.ViewUnidadesLabel_capacidad}"/>
+                    <h:outputText value="#{unidadesController.selected.capacidad}" title="#{bundle.ViewUnidadesTitle_capacidad}"/>
+                    <h:outputText value="#{bundle.ViewUnidadesLabel_numeroDeUnidad}"/>
+                    <h:outputText value="#{unidadesController.selected.numeroDeUnidad}" title="#{bundle.ViewUnidadesTitle_numeroDeUnidad}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{unidadesController.destroyAndView}" value="#{bundle.ViewUnidadesDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewUnidadesEditLink}"/>
+                <br />
+                <h:commandLink action="#{unidadesController.prepareCreate}" value="#{bundle.ViewUnidadesCreateLink}" />
+                <br />
+                <h:commandLink action="#{unidadesController.prepareList}" value="#{bundle.ViewUnidadesShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/views/unidades/List" value="#{bundle.ViewUnidadesIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

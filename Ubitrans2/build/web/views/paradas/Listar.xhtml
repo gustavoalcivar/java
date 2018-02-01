@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>UBITRANS</title>
+    </h:head>
+    <h:body>
+        
+        
+        
+        <p:layout fullPage="true">  
+  
+    <p:layoutUnit position="north" size="90" resizable="false" closable="false" collapsible="false">  
+        <CENTER><h:outputText value="UBITRANS"/></CENTER>
+        <br />
+        <CENTER><h:outputText value="Sistema de ubicación de transporte público"/></CENTER>  
+    </p:layoutUnit>  
+  
+    <!--<p:layoutUnit position="south" size="100" header="Bottom" resizable="true" closable="true" collapsible="true">  
+        <h:outputText value="South unit content." />  
+    </p:layoutUnit>-->  
+  
+    <p:layoutUnit position="west" size="200" header="Left" resizable="true" closable="true" collapsible="true">  
+        <!--<h:outputText value="West unit content." />-->
+        
+    </p:layoutUnit>  
+  
+    <p:layoutUnit position="east" size="200" header="Right" resizable="true" closable="true" collapsible="true" effect="drop">  
+        <h:outputText value="Right unit content." />  
+    </p:layoutUnit>  
+  
+    <p:layoutUnit position="center">  
+        <h:form>
+            
+            
+            
+            
+            <!--This fullPage layout consists of five different layoutUnits which are resizable and closable by default.  -->
+  
+      <CENTER>
+        <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListParadasEmpty}" rendered="#{paradasController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{paradasController.items.rowCount > 0}">
+                    <h:outputText value="#{paradasController.pagination.pageFirstItem + 1}..#{paradasController.pagination.pageLastItem + 1}/#{paradasController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{paradasController.previous}" value="#{bundle.Previous} #{paradasController.pagination.pageSize}" rendered="#{paradasController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{paradasController.next}" value="#{bundle.Next} #{paradasController.pagination.pageSize}" rendered="#{paradasController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{paradasController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParadasTitle_idParada}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idParada}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParadasTitle_nombreParada}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombreParada}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParadasTitle_distancia}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.distancia}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParadasTitle_descripcionParada}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descripcionParada}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{paradasController.prepareView}" value="#{bundle.ListParadasViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{paradasController.prepareEdit}" value="#{bundle.ListParadasEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{paradasController.destroy}" value="#{bundle.ListParadasDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{paradasController.prepareCreate}" value="#{bundle.ListParadasCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/inicio" value="#{bundle.ListParadasIndexLink}"/>
+            </h:form>
+        </CENTER>      
+            
+            
+        </h:form>  
+    </p:layoutUnit>  
+  
+</p:layout>
+    </h:body>
+</html>
+

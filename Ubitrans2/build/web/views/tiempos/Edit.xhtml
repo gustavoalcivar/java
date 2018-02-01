@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditTiemposTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditTiemposLabel_idTiempo}" for="idTiempo" />
+                    <h:inputText id="idTiempo" value="#{tiemposController.selected.idTiempo}" title="#{bundle.EditTiemposTitle_idTiempo}" required="true" requiredMessage="#{bundle.EditTiemposRequiredMessage_idTiempo}"/>
+                    <h:outputLabel value="#{bundle.EditTiemposLabel_tiempo}" for="tiempo" />
+                    <h:inputText id="tiempo" value="#{tiemposController.selected.tiempo}" title="#{bundle.EditTiemposTitle_tiempo}" required="true" requiredMessage="#{bundle.EditTiemposRequiredMessage_tiempo}"/>
+                    <h:outputLabel value="#{bundle.EditTiemposLabel_idViaje}" for="idViaje" />
+                    <h:selectOneMenu id="idViaje" value="#{tiemposController.selected.idViaje}" title="#{bundle.EditTiemposTitle_idViaje}" required="true" requiredMessage="#{bundle.EditTiemposRequiredMessage_idViaje}">
+                        <f:selectItems value="#{viajesController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditTiemposLabel_idParadaRuta}" for="idParadaRuta" />
+                    <h:selectOneMenu id="idParadaRuta" value="#{tiemposController.selected.idParadaRuta}" title="#{bundle.EditTiemposTitle_idParadaRuta}" required="true" requiredMessage="#{bundle.EditTiemposRequiredMessage_idParadaRuta}">
+                        <f:selectItems value="#{paradaRutaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{tiemposController.update}" value="#{bundle.EditTiemposSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditTiemposViewLink}"/>
+                <br />
+                <h:commandLink action="#{tiemposController.prepareList}" value="#{bundle.EditTiemposShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/inicio" value="#{bundle.EditTiemposIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

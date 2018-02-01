@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>UBITRANS</title>
+    </h:head>
+    <h:body>
+        
+        
+        <p:layout fullPage="true">  
+  
+    <p:layoutUnit position="north" size="90" resizable="false" closable="false" collapsible="false">  
+        <CENTER><h:outputText value="UBITRANS"/></CENTER>
+        <br />
+        <CENTER><h:outputText value="Sistema de ubicación de transporte público"/></CENTER>  
+    </p:layoutUnit>  
+  
+    <!--<p:layoutUnit position="south" size="100" header="Bottom" resizable="true" closable="true" collapsible="true">  
+        <h:outputText value="South unit content." />  
+    </p:layoutUnit>-->  
+  
+    <p:layoutUnit position="west" size="200" header="Left" resizable="true" closable="true" collapsible="true">  
+        <!--<h:outputText value="West unit content." />-->
+        
+    </p:layoutUnit>  
+  
+    <p:layoutUnit position="east" size="200" header="Right" resizable="true" closable="true" collapsible="true" effect="drop">  
+        <h:outputText value="Right unit content." />  
+    </p:layoutUnit>  
+  
+    <p:layoutUnit position="center">  
+        <h:form>
+            
+            
+            
+            
+            <!--This fullPage layout consists of five different layoutUnits which are resizable and closable by default.  -->
+  
+      <CENTER>
+        <!--<h:link outcome="/views/paradaRuta/List" value="Show All ParadaRuta Items"/>
+        <br />-->
+        <br />
+        <br />
+        <br />
+        <h:link outcome="/views/paradas/Listar" value="PARADAS"/>
+        <br />
+        <br />
+        <br />
+        <h:link outcome="/views/rutas/List" value="RUTAS"/>
+        <br />
+        <br />
+        <br />
+        <!--<h:link outcome="/views/tiempos/List" value="Show All Tiempos Items"/>
+        <br />
+        <h:link outcome="/views/unidadRuta/List" value="Show All UnidadRuta Items"/>
+        <br />-->
+        <h:link outcome="/views/unidades/List" value="UNIDADES"/>
+        <!--<h:link outcome="/views/viajes/List" value="Show All Viajes Items"/>-->
+        </CENTER>      
+            
+            
+        </h:form>  
+    </p:layoutUnit>  
+  
+</p:layout>
+        
+        
+        
+    </h:body>
+</html>
+

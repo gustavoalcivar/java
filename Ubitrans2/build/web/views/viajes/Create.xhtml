@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateViajesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateViajesLabel_idViaje}" for="idViaje" />
+                    <h:inputText id="idViaje" value="#{viajesController.selected.idViaje}" title="#{bundle.CreateViajesTitle_idViaje}" required="true" requiredMessage="#{bundle.CreateViajesRequiredMessage_idViaje}"/>
+                    <h:outputLabel value="#{bundle.CreateViajesLabel_fechaViaje}" for="fechaViaje" />
+                    <h:inputText id="fechaViaje" value="#{viajesController.selected.fechaViaje}" title="#{bundle.CreateViajesTitle_fechaViaje}" required="true" requiredMessage="#{bundle.CreateViajesRequiredMessage_fechaViaje}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateViajesLabel_tiempoSalida}" for="tiempoSalida" />
+                    <h:inputText id="tiempoSalida" value="#{viajesController.selected.tiempoSalida}" title="#{bundle.CreateViajesTitle_tiempoSalida}" required="true" requiredMessage="#{bundle.CreateViajesRequiredMessage_tiempoSalida}"/>
+                    <h:outputLabel value="#{bundle.CreateViajesLabel_idUnidadRuta}" for="idUnidadRuta" />
+                    <h:selectOneMenu id="idUnidadRuta" value="#{viajesController.selected.idUnidadRuta}" title="#{bundle.CreateViajesTitle_idUnidadRuta}" required="true" requiredMessage="#{bundle.CreateViajesRequiredMessage_idUnidadRuta}">
+                        <f:selectItems value="#{unidadRutaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{viajesController.create}" value="#{bundle.CreateViajesSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{viajesController.prepareList}" value="#{bundle.CreateViajesShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/views/viajes/List" value="#{bundle.CreateViajesIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

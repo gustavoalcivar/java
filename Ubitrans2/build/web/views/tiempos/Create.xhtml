@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateTiemposTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateTiemposLabel_idTiempo}" for="idTiempo" />
+                    <h:inputText id="idTiempo" value="#{tiemposController.selected.idTiempo}" title="#{bundle.CreateTiemposTitle_idTiempo}" required="true" requiredMessage="#{bundle.CreateTiemposRequiredMessage_idTiempo}"/>
+                    <h:outputLabel value="#{bundle.CreateTiemposLabel_tiempo}" for="tiempo" />
+                    <h:inputText id="tiempo" value="#{tiemposController.selected.tiempo}" title="#{bundle.CreateTiemposTitle_tiempo}" required="true" requiredMessage="#{bundle.CreateTiemposRequiredMessage_tiempo}"/>
+                    <h:outputLabel value="#{bundle.CreateTiemposLabel_idViaje}" for="idViaje" />
+                    <h:selectOneMenu id="idViaje" value="#{tiemposController.selected.idViaje}" title="#{bundle.CreateTiemposTitle_idViaje}" required="true" requiredMessage="#{bundle.CreateTiemposRequiredMessage_idViaje}">
+                        <f:selectItems value="#{viajesController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateTiemposLabel_idParadaRuta}" for="idParadaRuta" />
+                    <h:selectOneMenu id="idParadaRuta" value="#{tiemposController.selected.idParadaRuta}" title="#{bundle.CreateTiemposTitle_idParadaRuta}" required="true" requiredMessage="#{bundle.CreateTiemposRequiredMessage_idParadaRuta}">
+                        <f:selectItems value="#{paradaRutaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{tiemposController.create}" value="#{bundle.CreateTiemposSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{tiemposController.prepareList}" value="#{bundle.CreateTiemposShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/inicio" value="#{bundle.CreateTiemposIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

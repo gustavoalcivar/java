@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewParadasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewParadasLabel_idParada}"/>
+                    <h:outputText value="#{paradasController.selected.idParada}" title="#{bundle.ViewParadasTitle_idParada}"/>
+                    <h:outputText value="#{bundle.ViewParadasLabel_nombreParada}"/>
+                    <h:outputText value="#{paradasController.selected.nombreParada}" title="#{bundle.ViewParadasTitle_nombreParada}"/>
+                    <h:outputText value="#{bundle.ViewParadasLabel_distancia}"/>
+                    <h:outputText value="#{paradasController.selected.distancia}" title="#{bundle.ViewParadasTitle_distancia}"/>
+                    <h:outputText value="#{bundle.ViewParadasLabel_descripcionParada}"/>
+                    <h:outputText value="#{paradasController.selected.descripcionParada}" title="#{bundle.ViewParadasTitle_descripcionParada}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{paradasController.destroyAndView}" value="#{bundle.ViewParadasDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewParadasEditLink}"/>
+                <br />
+                <h:commandLink action="#{paradasController.prepareCreate}" value="#{bundle.ViewParadasCreateLink}" />
+                <br />
+                <h:commandLink action="#{paradasController.prepareList}" value="#{bundle.ViewParadasShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/views/Paradas/Listar" value="#{bundle.ViewParadasIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

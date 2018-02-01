@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTiemposTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewTiemposLabel_idTiempo}"/>
+                    <h:outputText value="#{tiemposController.selected.idTiempo}" title="#{bundle.ViewTiemposTitle_idTiempo}"/>
+                    <h:outputText value="#{bundle.ViewTiemposLabel_tiempo}"/>
+                    <h:outputText value="#{tiemposController.selected.tiempo}" title="#{bundle.ViewTiemposTitle_tiempo}"/>
+                    <h:outputText value="#{bundle.ViewTiemposLabel_idViaje}"/>
+                    <h:outputText value="#{tiemposController.selected.idViaje}" title="#{bundle.ViewTiemposTitle_idViaje}"/>
+                    <h:outputText value="#{bundle.ViewTiemposLabel_idParadaRuta}"/>
+                    <h:outputText value="#{tiemposController.selected.idParadaRuta}" title="#{bundle.ViewTiemposTitle_idParadaRuta}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{tiemposController.destroyAndView}" value="#{bundle.ViewTiemposDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewTiemposEditLink}"/>
+                <br />
+                <h:commandLink action="#{tiemposController.prepareCreate}" value="#{bundle.ViewTiemposCreateLink}" />
+                <br />
+                <h:commandLink action="#{tiemposController.prepareList}" value="#{bundle.ViewTiemposShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/inicio" value="#{bundle.ViewTiemposIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

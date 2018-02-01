@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListParadasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListParadasEmpty}" rendered="#{paradasController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{paradasController.items.rowCount > 0}">
+                    <h:outputText value="#{paradasController.pagination.pageFirstItem + 1}..#{paradasController.pagination.pageLastItem + 1}/#{paradasController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{paradasController.previous}" value="#{bundle.Previous} #{paradasController.pagination.pageSize}" rendered="#{paradasController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{paradasController.next}" value="#{bundle.Next} #{paradasController.pagination.pageSize}" rendered="#{paradasController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{paradasController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParadasTitle_idParada}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idParada}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParadasTitle_nombreParada}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombreParada}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParadasTitle_distancia}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.distancia}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParadasTitle_descripcionParada}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descripcionParada}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{paradasController.prepareView}" value="#{bundle.ListParadasViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{paradasController.prepareEdit}" value="#{bundle.ListParadasEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{paradasController.destroy}" value="#{bundle.ListParadasDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{paradasController.prepareCreate}" value="#{bundle.ListParadasCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/inicio" value="#{bundle.ListParadasIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

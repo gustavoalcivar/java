@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateUnidadRutaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateUnidadRutaLabel_idUnidadRuta}" for="idUnidadRuta" />
+                    <h:inputText id="idUnidadRuta" value="#{unidadRutaController.selected.idUnidadRuta}" title="#{bundle.CreateUnidadRutaTitle_idUnidadRuta}" required="true" requiredMessage="#{bundle.CreateUnidadRutaRequiredMessage_idUnidadRuta}"/>
+                    <h:outputLabel value="#{bundle.CreateUnidadRutaLabel_fechaInicio}" for="fechaInicio" />
+                    <h:inputText id="fechaInicio" value="#{unidadRutaController.selected.fechaInicio}" title="#{bundle.CreateUnidadRutaTitle_fechaInicio}" required="true" requiredMessage="#{bundle.CreateUnidadRutaRequiredMessage_fechaInicio}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateUnidadRutaLabel_fechaFin}" for="fechaFin" />
+                    <h:inputText id="fechaFin" value="#{unidadRutaController.selected.fechaFin}" title="#{bundle.CreateUnidadRutaTitle_fechaFin}" required="true" requiredMessage="#{bundle.CreateUnidadRutaRequiredMessage_fechaFin}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateUnidadRutaLabel_idUnidad}" for="idUnidad" />
+                    <h:selectOneMenu id="idUnidad" value="#{unidadRutaController.selected.idUnidad}" title="#{bundle.CreateUnidadRutaTitle_idUnidad}" required="true" requiredMessage="#{bundle.CreateUnidadRutaRequiredMessage_idUnidad}">
+                        <f:selectItems value="#{unidadesController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateUnidadRutaLabel_idRuta}" for="idRuta" />
+                    <h:selectOneMenu id="idRuta" value="#{unidadRutaController.selected.idRuta}" title="#{bundle.CreateUnidadRutaTitle_idRuta}" required="true" requiredMessage="#{bundle.CreateUnidadRutaRequiredMessage_idRuta}">
+                        <f:selectItems value="#{rutasController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{unidadRutaController.create}" value="#{bundle.CreateUnidadRutaSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{unidadRutaController.prepareList}" value="#{bundle.CreateUnidadRutaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/inicio" value="#{bundle.CreateUnidadRutaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

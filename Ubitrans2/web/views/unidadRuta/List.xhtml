@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListUnidadRutaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListUnidadRutaEmpty}" rendered="#{unidadRutaController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{unidadRutaController.items.rowCount > 0}">
+                    <h:outputText value="#{unidadRutaController.pagination.pageFirstItem + 1}..#{unidadRutaController.pagination.pageLastItem + 1}/#{unidadRutaController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{unidadRutaController.previous}" value="#{bundle.Previous} #{unidadRutaController.pagination.pageSize}" rendered="#{unidadRutaController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{unidadRutaController.next}" value="#{bundle.Next} #{unidadRutaController.pagination.pageSize}" rendered="#{unidadRutaController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{unidadRutaController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListUnidadRutaTitle_idUnidadRuta}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idUnidadRuta}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListUnidadRutaTitle_fechaInicio}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaInicio}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListUnidadRutaTitle_fechaFin}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaFin}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListUnidadRutaTitle_idUnidad}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idUnidad}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListUnidadRutaTitle_idRuta}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idRuta}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{unidadRutaController.prepareView}" value="#{bundle.ListUnidadRutaViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{unidadRutaController.prepareEdit}" value="#{bundle.ListUnidadRutaEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{unidadRutaController.destroy}" value="#{bundle.ListUnidadRutaDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{unidadRutaController.prepareCreate}" value="#{bundle.ListUnidadRutaCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/inicio" value="#{bundle.ListUnidadRutaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

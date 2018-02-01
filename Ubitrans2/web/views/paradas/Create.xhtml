@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateParadasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateParadasLabel_idParada}" for="idParada" />
+                    <h:inputText id="idParada" value="#{paradasController.selected.idParada}" title="#{bundle.CreateParadasTitle_idParada}" required="true" requiredMessage="#{bundle.CreateParadasRequiredMessage_idParada}"/>
+                    <h:outputLabel value="#{bundle.CreateParadasLabel_nombreParada}" for="nombreParada" />
+                    <h:inputText id="nombreParada" value="#{paradasController.selected.nombreParada}" title="#{bundle.CreateParadasTitle_nombreParada}" required="true" requiredMessage="#{bundle.CreateParadasRequiredMessage_nombreParada}"/>
+                    <h:outputLabel value="#{bundle.CreateParadasLabel_distancia}" for="distancia" />
+                    <h:inputText id="distancia" value="#{paradasController.selected.distancia}" title="#{bundle.CreateParadasTitle_distancia}" required="true" requiredMessage="#{bundle.CreateParadasRequiredMessage_distancia}"/>
+                    <h:outputLabel value="#{bundle.CreateParadasLabel_descripcionParada}" for="descripcionParada" />
+                    <h:inputText id="descripcionParada" value="#{paradasController.selected.descripcionParada}" title="#{bundle.CreateParadasTitle_descripcionParada}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{paradasController.create}" value="#{bundle.CreateParadasSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{paradasController.prepareList}" value="#{bundle.CreateParadasShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/views/Paradas/Listar" value="#{bundle.CreateParadasIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

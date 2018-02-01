@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListRutasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListRutasEmpty}" rendered="#{rutasController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{rutasController.items.rowCount > 0}">
+                    <h:outputText value="#{rutasController.pagination.pageFirstItem + 1}..#{rutasController.pagination.pageLastItem + 1}/#{rutasController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{rutasController.previous}" value="#{bundle.Previous} #{rutasController.pagination.pageSize}" rendered="#{rutasController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{rutasController.next}" value="#{bundle.Next} #{rutasController.pagination.pageSize}" rendered="#{rutasController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{rutasController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRutasTitle_idRuta}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idRuta}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRutasTitle_nombreRuta}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombreRuta}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRutasTitle_descripcionRuta}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descripcionRuta}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{rutasController.prepareView}" value="#{bundle.ListRutasViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{rutasController.prepareEdit}" value="#{bundle.ListRutasEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{rutasController.destroy}" value="#{bundle.ListRutasDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{rutasController.prepareCreate}" value="#{bundle.ListRutasCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/inicio" value="#{bundle.ListRutasIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
